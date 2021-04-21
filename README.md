@@ -37,6 +37,6 @@ python3 manage.py runserver 0.0.0.0:8000
 ```
 
 ## 查看
-[](http://127.0.0.1:8000/index/)
+[http://127.0.0.1:8000/index/](http://127.0.0.1:8000/index/)
 
 
