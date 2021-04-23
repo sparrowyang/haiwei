@@ -44,3 +44,12 @@ python3 manage.py runserver 0.0.0.0:8000
 ## 前端框架
 [MDUI](https://www.mdui.org/)
 
+## 开发
+
+### 前端 
+于templates文件夹编写html模板页面。
+
+### 后端
+于haiwei文件夹编写python,调用数据库等。
+
+
