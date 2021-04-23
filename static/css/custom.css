@@ -18,3 +18,9 @@ p{
 /* 类选择器 */
 
 /* id选择器 */
+
+#random_bt{
+    position: absolute;
+    bottom: 10%;
+    left: 45%;
+}

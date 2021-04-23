@@ -20,5 +20,6 @@ from . import  views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('api/v1/loadall',home.main_data),
 
 ]
