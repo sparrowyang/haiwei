@@ -10,6 +10,7 @@
     <!-- MDUI CSS -->
     <link rel="stylesheet"  href="{% static "/css/mdui.min.css" %}" />
     <link rel="stylesheet"  href="{% static "/css/custom.css" %}" />
+	<link rel="stylesheet"  href="{% static "/css/animate.min.css" %}" />
     <title>{{ title }}</title>
   </head>
 	<body class=" mdui-drawer-body-left mdui-drawer-body-right">
@@ -40,8 +41,8 @@
 
 
   <!-- 左下角按钮 -->
-	<div class="mdui-fab-wrapper " mdui-fab="{trigger: 'hover'}" id="exampleFab">
-	  <button class="mdui-fab mdui-ripple mdui-color-theme-accent">
+	<div class="mdui-fab-wrapper " mdui-fab="{trigger: 'hover'}" >
+	  <button class="mdui-fab mdui-ripple mdui-color-theme-accent" id="menu_bt">
 		<!-- 默认显示的图标 -->
 		<i class="mdui-icon material-icons">expand_more</i>
 		<!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
@@ -65,9 +66,11 @@
         function load_all(){
             $.getJSON("api/v1/loadall",function(data){
                 var items = data['items'];
+				
+				$(".div_item").remove();
                 $.each(items, function(i, field){
-                    var docs = '<div class="mdui-grid-tile"><a href="javascript:;"><img ';
-                    var img = 'src="/static/uploads/mlj.jpg"/></a>';
+                    var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="javascript:;"><img ';
+                    var img = 'src="/static/uploads/'+field['imgid'] +'.jpg"/></a>';
                     var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
                     var title = '<div class="mdui-grid-tile-title">'+field['fname']+'</div>';
                     var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>'+field['taste']+'</div>';

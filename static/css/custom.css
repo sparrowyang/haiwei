@@ -1,4 +1,4 @@
-/* 这里自定义CSS样式 */
+/*********** 这里自定义CSS样式 *************/
 
 /* 标签 */
 
@@ -15,12 +15,33 @@ p{
 	
 }
 
-/* 类选择器 */
+/******* 类选择器 *******/
 
-/* id选择器 */
+/* 每一个食物预览 */
+.div_item{
+	width: 95%;
+	animation-duration: 0.5s;
+}
+
+.food_item{
+	align:auto;
+	text-align: center;
+	text-align: -webkit-center;
+}
+/******* id选择器 *******/
+
+/* 显示界面 */
+
 
 #random_bt{
-    position: absolute;
+	transform: scale(1.25, 1.25);
+    background-color: red;
+    position: fixed;
     bottom: 10%;
     left: 45%;
+
+}
+
+#menu_bt{
+	background-color: red;
 }
