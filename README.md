@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ## 运行
 项目根目录：
 ```bash
-python3 manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8000
 ```
 
 ## 查看
