@@ -52,4 +52,8 @@ python3 manage.py runserver 0.0.0.0:8000
 ### 后端
 于haiwei文件夹编写python,调用数据库等。
 
+### 后记
+1. 季节性选择
+2. 
+
 

@@ -19,11 +19,15 @@ p{
 
 /* 每一个食物预览 */
 .div_item{
+	border:2px solid antiquewhite;
+	border-radius:25px/25px;
 	width: 95%;
 	animation-duration: 0.5s;
 }
 
+/*里面有很多食物预览*/
 .food_item{
+
 	align:auto;
 	text-align: center;
 	text-align: -webkit-center;
@@ -35,7 +39,7 @@ p{
 
 #random_bt{
 	transform: scale(1.25, 1.25);
-    background-color: red;
+    /*background-color: red;*/
     position: fixed;
     bottom: 10%;
     left: 45%;
@@ -43,5 +47,5 @@ p{
 }
 
 #menu_bt{
-	background-color: red;
+	/*background-color: red;*/
 }
