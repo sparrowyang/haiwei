@@ -25,4 +25,6 @@ urlpatterns = [
 
     path('detail/',detail.open),
 
+    path('all/', views.all_data),
+    path('location/', views.location_data)
 ]
