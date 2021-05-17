@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('api/v1/loadall',api.main_data),
-
+    path('all/', views.all_data),
+    path('location/', views.location_data)
 ]
