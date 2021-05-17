@@ -112,16 +112,17 @@
 
     <script type="text/javascript">
         function load_all(){
-            $.getJSON("api/v1/loadall",function(data){
+            $.getJSON("all",function(data){
                 var items = data['items'];
 				
 				$(".div_item").remove();
                 $.each(items, function(i, field){
                     var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/"><img ';
-                    var img = 'src="/static/uploads/'+field['imgid'] +'.jpg"/></a>';
+                    //var img = 'src="/static/uploads/'+field['fields']['imgid'] +'.jpg"/></a>';
+                    var img = 'src="/static/uploads/mlj.jpg"/></a>';
                     var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
-                    var title = '<div class="mdui-grid-tile-title">'+field['fname']+'</div>';
-                    var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>'+field['taste']+'</div>';
+                    var title = '<div class="mdui-grid-tile-title">'+field['fields']['fname']+'</div>';
+                    var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>'+field['fields']['taste']+'</div>';
                     var close = '</div></div></div>';
                     var app = docs + img + content + title + statement + close;
                     $(".food_item").append(app);

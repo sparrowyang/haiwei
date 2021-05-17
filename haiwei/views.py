@@ -39,3 +39,12 @@ def location_data(request):
     t = json.loads(res)
     data = {'status': 'success', 'code': '200', 'items': t}
     return HttpResponse(json.dumps(data, ensure_ascii=False))
+
+
+def upload(request):
+    context = {
+
+        'title': '海味管理',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
+        'xxx': 'xxxxx'
+    }
+    return render(request, 'upload.html', context)

@@ -24,7 +24,10 @@ urlpatterns = [
     path('api/v1/loadall',api.main_data),
 
     path('detail/',detail.open),
+    path('upload/', views.upload),
 
     path('all/', views.all_data),
     path('location/', views.location_data)
+
+
 ]
