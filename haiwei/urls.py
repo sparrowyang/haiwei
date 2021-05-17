@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from . import api
 from . import  views
+from . import detail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('api/v1/loadall',api.main_data),
+
+    path('detail/',detail.open),
 
 ]

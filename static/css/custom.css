@@ -32,6 +32,10 @@ p{
 	text-align: center;
 	text-align: -webkit-center;
 }
+
+.div_detail{
+	height: 100%;
+}
 /******* id选择器 *******/
 
 /* 显示界面 */
@@ -49,3 +53,4 @@ p{
 #menu_bt{
 	/*background-color: red;*/
 }
+

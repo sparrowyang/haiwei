@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet"  href="{% static "/css/mdui.min.css" %}" />
+    <link rel="stylesheet"  href="{% static "/css/custom.css" %}" />
+	<link rel="stylesheet"  href="{% static "/css/animate.min.css" %}" />
     <title>{{ name }}</title>
 </head>
-<body>
+<body class="mdui-color-amber-200">
+<div class="div_detail mdui-card mdui-color-theme mdui-color-amber-200">
 
+  <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
+  <div class="mdui-card-media">
+    <img src="/static/uploads/mlj.jpg"/>
+
+    <!-- 卡片中可以包含一个或多个菜单按钮 -->
+    <div class="mdui-card-menu ">
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-white"><i class="mdui-icon material-icons">share</i></button>
+    </div>
+  </div>
+
+  <!-- 卡片的标题和副标题 -->
+  <div class="mdui-card-primary">
+    <div class="mdui-card-primary-title">{{ name }}</div>
+{#    <div class="mdui-card-primary-subtitle">Subtitle</div>#}
+  </div>
+
+  <!-- 卡片的内容 -->
+  <div class="mdui-card-content">{{ dec }}</div>
+
+  <!-- 卡片的按钮 -->
+  <div class="mdui-card-actions">
+    <button class="mdui-btn mdui-ripple mdui-float-right" onclick="back()"><i class="mdui-icon material-icons">arrow_back</i> 返回</button>
+{#    <button class="mdui-btn mdui-ripple">action 2</button>#}
+
+  </div>
+
+</div>
 </body>
+
+<script type="text/javascript">
+    function back(){
+        window.history.back(-1);
+    }
+</script>
 </html>
