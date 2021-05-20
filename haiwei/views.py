@@ -3,6 +3,7 @@ import json
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 from haiwei.models import food
 
@@ -93,9 +94,23 @@ def upload(request):
 
 
 def r_upload(request):
+    user = request.session['user']
     context = {
 
         'title': '海味管理',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
         'xxx': 'xxxxx'
     }
+    if user == '':
+        return render(request, 'login.html', context)
+
     return render(request, 'uploads.html', context)
+
+
+def r_login(request):
+    uname = request.POST['username']
+    pwd = request.POST['password']
+
+    if uname == 'admin' and pwd == 'admin':
+        request.session['user'] = 'admin'
+
+    return HttpResponseRedirect('/uploads/')
