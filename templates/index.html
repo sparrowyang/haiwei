@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static "/css/animate.min.css" %}"/>
     <title>{{ title }}</title>
 </head>
-<body class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-amber-50" onload="load_all()">
+<body id="b_main" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-amber-50" onload="load_all()">
 
 <div class=" mdui-toolbar mdui-color-theme mdui-color-amber">
 {#    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>#}
@@ -173,6 +173,17 @@
     function locate() {
         console.log("locate request.")
     }
+
+    var refresh = new SwipFresh('#b_main');
+
+    refresh.setOnRefreshListener(function () {
+
+        //被刷新的时候
+
+        load_all();
+
+    });
+
 </script>
 </body>
 </html>
