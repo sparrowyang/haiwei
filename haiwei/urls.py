@@ -15,17 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
 from . import api
-from . import  views
 from . import detail
+from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('api/v1/loadall',api.main_data),
+    path('api/v1/loadall', api.main_data),
 
-    path('detail/',detail.open),
-    path('upload/', views.r_upload),
-
+    path('detail/', detail.open),
+    path('uploads/', views.r_upload),
+    path('uploads/new/', views.upload),
     path('all/', views.all_data),
 
     path('search/location/', views.location_data),
