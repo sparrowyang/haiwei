@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet"  href="{% static "/css/mdui.min.css" %}" />
+    <link rel="stylesheet"  href="{% static "/css/custom.css" %}" />
+	<link rel="stylesheet"  href="{% static "/css/animate.min.css" %}" />
+    <title>{{ title }}</title>
+  </head>
+	<body id="b_upload" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-amber-50" >
+    <h2>上传管理</h2>
+    <form action="" method="post">
+        <div class="mdui-textfield">
+          <input class="mdui-textfield-input" type="text" placeholder="名称" name="fname"/>
+        </div>
+          <label class="mdui-radio">
+            <input type="radio" name="group1" value="第一食堂"/>
+            <i class="mdui-radio-icon"></i>
+            第一食堂
+          </label>
+
+          <label class="mdui-radio">
+            <input type="radio" name="group1" value="第二食堂" checked/>
+            <i class="mdui-radio-icon"></i>
+            第二食堂
+          </label>
+                  <label class="mdui-radio">
+            <input type="radio" name="group1" value="第三食堂"/>
+            <i class="mdui-radio-icon"></i>
+            第三食堂
+          </label>
+                  <label class="mdui-radio">
+            <input type="radio" name="group1" value="第四食堂"/>
+            <i class="mdui-radio-icon"></i>
+            第四食堂
+          </label>
+        <div class="mdui-textfield">
+          <input class="mdui-textfield-input" type="text" placeholder="窗口" name="wname"/>
+        </div>
+        <div class="mdui-textfield">
+          <input class="mdui-textfield-input" type="text" placeholder="价格" name="price"/>
+        </div>
+        <div class="mdui-textfield">
+          <label class="mdui-textfield-label">描述</label>
+          <textarea class="mdui-textfield-input" rows="4" name="other"></textarea>
+        </div>
+        <input type="file" name="img" multiple="multiple"/>
+        <input type="submit"/>
+    </form>
+
+
+
+  </body>
+</html>

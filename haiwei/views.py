@@ -92,3 +92,12 @@ def upload(request):
         )
     except:
         return HttpResponse('error')
+
+
+def r_upload(request):
+    context = {
+
+        'title': '海味管理',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
+        'xxx': 'xxxxx'
+    }
+    return render(request, 'uploads.html', context)
