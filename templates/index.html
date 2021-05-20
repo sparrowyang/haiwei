@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-cmn-Hans">
-  <head>
+<head>
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
@@ -8,162 +8,171 @@
     <meta name="force-rendering" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- MDUI CSS -->
-    <link rel="stylesheet"  href="{% static "/css/mdui.min.css" %}" />
-    <link rel="stylesheet"  href="{% static "/css/custom.css" %}" />
-	<link rel="stylesheet"  href="{% static "/css/animate.min.css" %}" />
+    <link rel="stylesheet" href="{% static "/css/mdui.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "/css/custom.css" %}"/>
+    <link rel="stylesheet" href="{% static "/css/animate.min.css" %}"/>
     <title>{{ title }}</title>
-  </head>
-	<body class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-amber-50" onload="load_all()">
+</head>
+<body class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-amber-50" onload="load_all()">
 
 <div class=" mdui-toolbar mdui-color-theme mdui-color-amber">
-  <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
-  <span class="mdui-typo-title">{{ title }}</span>
-  <div class="mdui-toolbar-spacer"></div>
-  <a href="javascript:;" class="mdui-btn mdui-btn-icon" onclick="show_search_dlg()"><i class="mdui-icon material-icons">search</i></a>
-  <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
-  <a href="javascript:;" class="mdui-btn mdui-btn-icon " mdui-menu="{target: '#more_menu'}" ><i class="mdui-icon material-icons">more_vert</i></a>
+{#    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>#}
+    <span class="mdui-typo-title">{{ title }}</span>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" onclick="show_search_dlg()"><i
+            class="mdui-icon material-icons">search</i></a>
+{#    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>#}
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon " mdui-menu="{target: '#more_menu'}"><i
+            class="mdui-icon material-icons">more_vert</i></a>
     {# MORE MENU#}
-<ul id="more_menu" class="mdui-menu mdui-color-theme mdui-color-amber-200">
-  <li class="mdui-menu-item">
-    <a href="javascript:;" class="mdui-ripple">
-      <i class="mdui-menu-item-icon mdui-icon material-icons">more_horiz</i>关于我们
-    </a>
-  </li>
-    <li class="mdui-divider"></li>
-  <li class="mdui-menu-item">
-    <a href="https://github.com/sparrowyang/haiwei" class="mdui-ripple">
-      <i class="mdui-menu-item-icon mdui-icon material-icons">code</i>Github
-    </a>
-  </li>
+    <ul id="more_menu" class="mdui-menu mdui-color-theme mdui-color-amber-200">
+        <li class="mdui-menu-item">
+            <a href="javascript:;" class="mdui-ripple">
+                <i class="mdui-menu-item-icon mdui-icon material-icons">more_horiz</i>关于我们
+            </a>
+        </li>
+        <li class="mdui-divider"></li>
+        <li class="mdui-menu-item">
+            <a href="https://github.com/sparrowyang/haiwei" class="mdui-ripple">
+                <i class="mdui-menu-item-icon mdui-icon material-icons">code</i>Github
+            </a>
+        </li>
 
 
-</ul>
-{# END MORE MENU#}
+    </ul>
+    {# END MORE MENU#}
 </div>
-  
 
-	
-  <!-- 显示界面 -->
-    <div class="food_item">
-        <!-- 内容由js 加载出来-->
-    </div>
+
+<!-- 显示界面 -->
+<div class="food_item">
+    <!-- 内容由js 加载出来-->
+</div>
 {# SEARCH DAILOG  #}
-    <div id="dialog_search" class="mdui-dialog mdui-color-amber-50">
-      <div class="mdui-dialog-content">想吃什么？</div>
-      <div class="mdui-dialog-actions">
-          <div class="mdui-textfield">
-              <input class="mdui-textfield-input" type="text" placeholder="老八密制小汉堡"/>
-          </div>
-          <button class="mdui-btn mdui-ripple" onclick="show_search_dlg()">取消</button>
-          <button class="mdui-btn mdui-ripple" onclick="search_foods()">搜索</button>
-      </div>
+<div id="dialog_search" class="mdui-dialog mdui-color-amber-50">
+    <div class="mdui-dialog-content">想吃什么？</div>
+    <div class="mdui-dialog-actions">
+        <div class="mdui-textfield">
+            <input class="mdui-textfield-input" type="text" placeholder="老八密制小汉堡"/>
+        </div>
+        <button class="mdui-btn mdui-ripple" onclick="show_search_dlg()">取消</button>
+        <button class="mdui-btn mdui-ripple" onclick="search_foods()">搜索</button>
     </div>
+</div>
 {#END SEARCH DAILOG #}
 
 
 {# FILTER DAILOG  #}
-    <div id="dialog_filter" class="mdui-dialog mdui-color-amber-50">
-        <div class="mdui-dialog-content">过滤</div>
-        <div class="mdui-dialog-actions">
-            <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣1</label>
-            <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣2</label>
-            <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣3</label>
+<div id="dialog_filter" class="mdui-dialog mdui-color-amber-50">
+    <div class="mdui-dialog-content">过滤</div>
+    <div class="mdui-dialog-actions">
+        <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣1</label>
+        <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣2</label>
+        <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣3</label>
 
-            <br><button class="mdui-btn mdui-ripple" onclick="show_filter_dlg()">取消</button>
-            <button class="mdui-btn mdui-ripple" onclick="filter_foods()">搜索</button>
-        </div>
-
+        <br>
+        <button class="mdui-btn mdui-ripple" onclick="show_filter_dlg()">取消</button>
+        <button class="mdui-btn mdui-ripple" onclick="filter_foods()">搜索</button>
     </div>
+
+</div>
 {#END FILTER DAILOG #}
 
 
+<!-- END显示界面 -->
+
+<!-- 中间按钮 -->
+<button id="random_bt" class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-color-amber-900" onclick="load_all()"><i
+        class="mdui-icon material-icons">refresh</i></button>
+<!-- END中间按钮 -->
 
 
-
-  <!-- END显示界面 -->
-
-  <!-- 中间按钮 -->
-    <button id="random_bt" class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-color-amber-900" onclick="load_all()"><i class="mdui-icon material-icons">refresh</i></button>
-  <!-- END中间按钮 -->
-
-
-
-  <!-- 左下角按钮 -->
-	<div class="mdui-fab-wrapper " mdui-fab="{trigger: 'hover'}" >
-	  <button class="mdui-fab mdui-ripple mdui-color-theme-accent mdui-color-amber-900" id="menu_bt">
-		<!-- 默认显示的图标 -->
-		<i class="mdui-icon material-icons">expand_more</i>
-		<!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
-		<i class="mdui-icon mdui-fab-opened material-icons">expand_less</i>
-	  </button>
-	  <div class="mdui-fab-dial">
-		<button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink" onclick="load_all()"><i class="mdui-icon material-icons">backup</i></button>
-		<button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"  onclick="show_search_dlg()"><i class="mdui-icon material-icons">search</i></button>
-		<button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="locate()"><i class="mdui-icon material-icons">room</i></button>
-		<button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue" onclick="show_filter_dlg()"><i class="mdui-icon material-icons">filter_list</i></button>
-	  </div>
-	</div>
-  <!-- END左下角按钮 -->
-    <!-- MDUI JavaScript -->
-    <script src="{% static "js/mdui.min.js" %}"></script>
-    <script src="{% static "js/jquery.min.js" %}"></script>
-    <script src="{% static "js/custom.js" %}"></script>
+<!-- 左下角按钮 -->
+<div class="mdui-fab-wrapper " mdui-fab="{trigger: 'hover'}">
+    <button class="mdui-fab mdui-ripple mdui-color-theme-accent mdui-color-amber-900" id="menu_bt">
+        <!-- 默认显示的图标 -->
+        <i class="mdui-icon material-icons">expand_more</i>
+        <!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
+        <i class="mdui-icon mdui-fab-opened material-icons">expand_less</i>
+    </button>
+    <div class="mdui-fab-dial">
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink" onclick="load_all()"><i
+                class="mdui-icon material-icons">backup</i></button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red" onclick="show_search_dlg()"><i
+                class="mdui-icon material-icons">search</i></button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="locate()"><i
+                class="mdui-icon material-icons">room</i></button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue" onclick="show_filter_dlg()"><i
+                class="mdui-icon material-icons">filter_list</i></button>
+    </div>
+</div>
+<!-- END左下角按钮 -->
+<!-- MDUI JavaScript -->
+<script src="{% static "js/mdui.min.js" %}"></script>
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/custom.js" %}"></script>
 
 
-    <script type="text/javascript">
-        function load_all(){
-            $.getJSON("all",function(data){
-                var items = data['items'];
-				
-				$(".div_item").remove();
-                $.each(items, function(i, field){
-                    var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/"><img ';
-                    //var img = 'src="/static/uploads/'+field['fields']['imgid'] +'.jpg"/></a>';
-                    var img = 'src="/static/uploads/mlj.jpg"/></a>';
-                    var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
-                    var title = '<div class="mdui-grid-tile-title">'+field['fields']['fname']+'</div>';
-                    var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>'+field['fields']['taste']+'</div>';
-                    var close = '</div></div></div>';
-                    var app = docs + img + content + title + statement + close;
-                    $(".food_item").append(app);
-                });
+<script type="text/javascript">
+    function load_all() {
+        $.getJSON("all", function (data) {
+            var items = data['items'];
+
+            $(".div_item").remove();
+            $.each(items, function (i, field) {
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/"><img ';
+                //var img = 'src="/static/uploads/'+field['fields']['imgid'] +'.jpg"/></a>';
+                var img = 'src="/static/uploads/mlj.jpg"/></a>';
+                var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
+                var title = '<div class="mdui-grid-tile-title">' + field['fields']['fname'] + '</div>';
+                var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>' + field['fields']['taste'] + '</div>';
+                var close = '</div></div></div>';
+                var app = docs + img + content + title + statement + close;
+                $(".food_item").append(app);
             });
-        }
-        var search_dlg_ints = new mdui.Dialog('#dialog_search');
-        var filter_dlg_ints = new mdui.Dialog('#dialog_filter');
-        function toggle_dlg(a){
-            a.toggle();
-        }
-        function show_search_dlg(){
-            toggle_dlg(search_dlg_ints);
-        }
-        function show_filter_dlg(){
-            toggle_dlg(filter_dlg_ints);
-        }
-        function search_foods(){
-            $.getJSON("api/v1/search",function(data){
-                var items = data['items'];
-				$(".div_item").remove();
-				//show html result.
-                $.each(items, function(i, field){
-                    var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/"><img ';
-                    var img = 'src="/static/uploads/'+field['imgid'] +'.jpg"/></a>';
-                    var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
-                    var title = '<div class="mdui-grid-tile-title">'+field['fname']+'</div>';
-                    var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>'+field['taste']+'</div>';
-                    var close = '</div></div></div>';
-                    var app = docs + img + content + title + statement + close;
-                    $(".food_item").append(app);
-                });
-            });
-        }
-        function filter_foods(){
-            console.log("fiter foods request.")
-        }
+        });
+    }
 
-        function locate(){
-            console.log("locate request.")
-        }
-    </script>
-  </body>
+    var search_dlg_ints = new mdui.Dialog('#dialog_search');
+    var filter_dlg_ints = new mdui.Dialog('#dialog_filter');
+
+    function toggle_dlg(a) {
+        a.toggle();
+    }
+
+    function show_search_dlg() {
+        toggle_dlg(search_dlg_ints);
+    }
+
+    function show_filter_dlg() {
+        toggle_dlg(filter_dlg_ints);
+    }
+
+    function search_foods() {
+        $.getJSON("api/v1/search", function (data) {
+            var items = data['items'];
+            $(".div_item").remove();
+            //show html result.
+            $.each(items, function (i, field) {
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/"><img ';
+                var img = 'src="/static/uploads/' + field['imgid'] + '.jpg"/></a>';
+                var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
+                var title = '<div class="mdui-grid-tile-title">' + field['fname'] + '</div>';
+                var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>' + field['taste'] + '</div>';
+                var close = '</div></div></div>';
+                var app = docs + img + content + title + statement + close;
+                $(".food_item").append(app);
+            });
+        });
+    }
+
+    function filter_foods() {
+        console.log("fiter foods request.")
+    }
+
+    function locate() {
+        console.log("locate request.")
+    }
+</script>
+</body>
 </html>

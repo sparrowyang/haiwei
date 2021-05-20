@@ -47,4 +47,4 @@ def upload(request):
         'title': '海味管理',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
         'xxx': 'xxxxx'
     }
-    return render(request, 'upload.html', context)
+    return render(request, 'uploads.html', context)
