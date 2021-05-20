@@ -26,5 +26,8 @@ urlpatterns = [
     path('detail/',detail.open),
 
     path('all/', views.all_data),
-    path('location/', views.location_data)
+    path('search/location/', views.location_data),
+    path('search/taste/', views.taste_data),
+    path('search/id/', views.id_data),
+    path('search/fname/', views.fname_data)
 ]
