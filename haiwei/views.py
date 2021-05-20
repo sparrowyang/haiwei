@@ -71,27 +71,25 @@ def taste_data(request):
 
 # 上传
 def upload(request):
-    f = request.GET['fname']
-    w = request.GET['wname']
-    l = request.GET['location']
-    p = request.GET['price']
-    t = request.GET['taste']
-    i_1 = request.GET['imgid_1']
-    i_2 = request.GET['imgid_2']
-    o = request.GET['others']
-    try:
-        food.objects.create(
-            imgid_1=i_1,
-            imgid_2=i_2,
-            location=l,
-            wname=w,
-            fname=f,
-            price=p,
-            taste=t,
-            others=o
-        )
-    except:
-        return HttpResponse('error')
+    f = request.POST['fname']
+    w = request.POST['wname']
+    l = request.POST['location']
+    p = request.POST['price']
+    t = request.POST['taste']
+    i_1 = request.POST['img']
+    # i_2 = request.POST['imgid_2']
+    o = request.POST['others']
+    food.objects.create(
+        imgid_1=i_1,
+        # imgid_2=i_2,
+        location=l,
+        wname=w,
+        fname=f,
+        price=p,
+        taste=t,
+        others=o
+    )
+    return render(request, 'uploads.html')
 
 
 def r_upload(request):
