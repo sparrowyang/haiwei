@@ -94,13 +94,13 @@ def upload(request):
 
 
 def r_upload(request):
-    user = request.session['user']
+    user = request.session.get['user',None]
     context = {
 
         'title': '海味管理',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
         'xxx': 'xxxxx'
     }
-    if user == '':
+    if user == None:
         return render(request, 'login.html', context)
 
     return render(request, 'uploads.html', context)
