@@ -26,10 +26,14 @@ urlpatterns = [
                   path('', views.index),
                   path('api/v1/loadall', api.main_data),
 
-                  path('detail/', detail.open),
-                  path('uploads/', views.r_upload),
-                  path('uploads/new/', views.upload),
-                  path('all/', views.all_data),
+
+    path('detail/', detail.open),
+    path('uploads/', views.r_upload),
+    path('uploads/new/', views.upload),
+    path('uploads/login/', views.r_login),
+    path('all/', views.all_data),
+    path('setting/',views.setting),
+    path('setting/save/',views.save_settting),
 
                   path('search/location/', views.location_data),
                   path('search/taste/', views.taste_data),

@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="{% static "/css/animate.min.css" %}"/>
     <title>{{ title }}</title>
 </head>
-<body id="b_main" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-amber-50" onload="load_all()">
+<body id="b_main" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-{{theme}}-50" >
 
-<div class=" mdui-toolbar mdui-color-theme mdui-color-amber">
+<div class=" mdui-toolbar mdui-color-theme mdui-color-{{theme}}">
 {#    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>#}
     <span class="mdui-typo-title">{{ title }}</span>
     <div class="mdui-toolbar-spacer"></div>
@@ -25,7 +25,12 @@
     <a href="javascript:;" class="mdui-btn mdui-btn-icon " mdui-menu="{target: '#more_menu'}"><i
             class="mdui-icon material-icons">more_vert</i></a>
     {# MORE MENU#}
-    <ul id="more_menu" class="mdui-menu mdui-color-theme mdui-color-amber-200">
+    <ul id="more_menu" class="mdui-menu mdui-color-theme mdui-color-{{theme}}-200">
+        <li class="mdui-menu-item">
+            <a href="setting/" class="mdui-ripple">
+                <i class="mdui-menu-item-icon mdui-icon material-icons">code</i>偏好
+            </a>
+        </li>
         <li class="mdui-menu-item">
             <a href="javascript:;" class="mdui-ripple">
                 <i class="mdui-menu-item-icon mdui-icon material-icons">more_horiz</i>关于我们
@@ -49,7 +54,7 @@
     <!-- 内容由js 加载出来-->
 </div>
 {# SEARCH DAILOG  #}
-<div id="dialog_search" class="mdui-dialog mdui-color-amber-50">
+<div id="dialog_search" class="mdui-dialog mdui-color-{{theme}}-50">
     <div class="mdui-dialog-content">想吃什么？</div>
     <div class="mdui-dialog-actions">
         <div class="mdui-textfield">
@@ -63,7 +68,7 @@
 
 
 {# FILTER DAILOG  #}
-<div id="dialog_filter" class="mdui-dialog mdui-color-amber-50">
+<div id="dialog_filter" class="mdui-dialog mdui-color-{{theme}}-50">
     <div class="mdui-dialog-content">过滤</div>
     <div class="mdui-dialog-actions">
         <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣1</label>
@@ -82,14 +87,14 @@
 <!-- END显示界面 -->
 
 <!-- 中间按钮 -->
-<button id="random_bt" class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-color-amber-900" onclick="load_all()"><i
+<button id="random_bt" class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-color-{{theme}}-900" onclick="load_all()"><i
         class="mdui-icon material-icons">refresh</i></button>
 <!-- END中间按钮 -->
 
 
 <!-- 左下角按钮 -->
-<div class="mdui-fab-wrapper " mdui-fab="{trigger: 'hover'}">
-    <button class="mdui-fab mdui-ripple mdui-color-theme-accent mdui-color-amber-900" id="menu_bt">
+<div class="mdui-fab-wrapper " mdui-fab="{trigger: 'hover'}" style="{{ customlr}}:16px" >
+    <button class="mdui-fab mdui-ripple mdui-color-theme-accent mdui-color-{{theme}}-900" id="menu_bt">
         <!-- 默认显示的图标 -->
         <i class="mdui-icon material-icons">expand_more</i>
         <!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
@@ -174,7 +179,7 @@
         console.log("locate request.")
     }
 
-    var refresh = new SwipFresh('#b_main');
+
 
     refresh.setOnRefreshListener(function () {
 

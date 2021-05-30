@@ -14,8 +14,8 @@
 	<link rel="stylesheet"  href="{% static "/css/animate.min.css" %}" />
     <title>{{ name }}</title>
 </head>
-<body class="mdui-color-amber-200">
-<div class="div_detail mdui-card mdui-color-theme mdui-color-amber-200">
+<body class="mdui-color-{{theme}}-200">
+<div class="div_detail mdui-card mdui-color-theme mdui-color-{{theme}}-200">
 
   <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
   <div class="mdui-card-media">
@@ -38,7 +38,7 @@
 
   <!-- 卡片的按钮 -->
   <div class="mdui-card-actions">
-    <button class="mdui-btn mdui-ripple mdui-float-right" onclick="back()"><i class="mdui-icon material-icons">arrow_back</i> 返回</button>
+    <button class="mdui-btn mdui-ripple mdui-float-{{ customlr }}" onclick="back()"><i class="mdui-icon material-icons">arrow_back</i> 返回</button>
 {#    <button class="mdui-btn mdui-ripple">action 2</button>#}
 
   </div>
