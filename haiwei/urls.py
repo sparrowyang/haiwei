@@ -13,26 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
 
-from . import api
-from . import detail
+from . import detail, api
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.index),
-    path('api/v1/loadall', api.main_data),
+                  path('admin/', admin.site.urls),
+                  path('', views.index),
+                  path('api/v1/loadall', api.main_data),
 
-    path('detail/', detail.open),
-    path('uploads/', views.r_upload),
-    path('uploads/new/', views.upload),
-    path('all/', views.all_data),
+                  path('detail/', detail.open),
+                  path('uploads/', views.r_upload),
+                  path('uploads/new/', views.upload),
+                  path('all/', views.all_data),
 
-    path('search/location/', views.location_data),
-    path('search/taste/', views.taste_data),
-    path('search/id/', views.id_data),
-    path('search/fname/', views.fname_data),
-    path('location/', views.location_data)
-]
+                  path('search/location/', views.location_data),
+                  path('search/taste/', views.taste_data),
+                  path('search/id/', views.id_data),
+                  path('search/fname/', views.fname_data),
+                  path('search/random/', views.random_data),
+                  path('location/', views.location_data)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
