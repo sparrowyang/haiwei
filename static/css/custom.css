@@ -55,5 +55,12 @@ p{
 
 #menu_bt{
 	/*background-color: red;*/
+	float: left;
+}
+
+#div_setting{
+	text-align: center;
+	margin: 20%;
+
 }
 

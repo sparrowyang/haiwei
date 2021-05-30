@@ -13,12 +13,39 @@ from haiwei.models import food
 
 def index(request):
     # 渲染内容
+    theme = request.session.get('theme', None)
+    customlr = request.session.get('customlr',None)
     context = {
-
         'title': '海味',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
+        'customlr':customlr,
+        'theme': theme,
         'xxx': 'xxxxx'
     }
     return render(request, 'index.html', context)
+
+def setting(request):
+    customlr = request.session.get('customlr',None)
+    theme = request.session.get('theme',None)
+    context = {
+        'title': '海味',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
+        'customlr':customlr,
+        'theme':theme,
+        'checked':'',
+        'xxx': 'xxxxx'
+    }
+    return render(request, 'setting.html', context)
+
+def save_settting(request):
+    lr = request.GET['customlr']
+    theme = request.GET['theme']
+    request.session['customlr'] = lr
+
+
+    request.session['theme'] = theme
+    data = {'status': 'success', 'code': '200'}
+    return HttpResponse(json.dumps(data, ensure_ascii=False))
+
+
 
 
 def all_data(request):
@@ -94,13 +121,13 @@ def upload(request):
 
 
 def r_upload(request):
-    user = request.session.get['user',None]
+    user = request.session.get('user',None)
     context = {
 
         'title': '海味管理',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
         'xxx': 'xxxxx'
     }
-    if user == None:
+    if user != 'admin':
         return render(request, 'login.html', context)
 
     return render(request, 'uploads.html', context)

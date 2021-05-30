@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet"  href="{% static "/css/mdui.min.css" %}" />
+    <link rel="stylesheet"  href="{% static "/css/custom.css" %}" />
+	<link rel="stylesheet"  href="{% static "/css/animate.min.css" %}" />
+    <title>{{ name }}</title>
+</head>
+<body class="mdui-color-{{ theme }}-200">
+<div id="div_setting">
+    <p >左手模式</p><br>
+    <select id="se_lr" class="mdui-select" mdui-select>
+        <option value="right">关</option>
+        <option value="left">开</option>
+    </select>
+    <br>
+    <p >主题</p><br>
+    <select id="se_theme" class="mdui-select" mdui-select>
+        <option value="amber">活力橙</option>
+        <option value="pink">哔哩粉</option>
+        <option value="teal">菠菜青</option>
+        <option value="blue">知乎蓝</option>
+        <option value="blue-grey">深空灰</option>
+    </select>
+</div>
+
+</body>
+
+<script src="{% static "js/mdui.min.js" %}"></script>
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/custom.js" %}"></script>
+<script type="text/javascript">
+    mdui.mutation()
+    function back(){
+        window.history.back(-1);
+    }
+$("#se_lr").change(function() {
+    //获取当前select选择的值
+    var v_theme = $("#se_theme").val();
+    var v_lr = $("#se_lr").val();
+    console.log(v_lr);
+    $.ajax({
+        url:"save/",
+        type:'get',
+        data:{
+            "theme":v_theme,
+            "customlr":v_lr
+        },
+        success:function(result){
+            console.log(result);
+        }
+    });
+
+});
+$("#se_theme").change(function() {
+    //获取当前select选择的值
+    var v_theme = $("#se_theme").val();
+    var v_lr = $("#se_lr").val();
+    console.log(v_theme);
+    console.log(v_lr);
+
+    $.ajax({
+        url:"save/",
+        type:'get',
+        data:{
+            "theme":v_theme,
+            "customlr":v_lr
+        },
+        success:function(result){
+            console.log(result);
+            location.reload();
+        }
+    });
+
+});
+
+
+
+
+</script>
+</html>
