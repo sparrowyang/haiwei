@@ -1,14 +1,15 @@
 import json
+import random
 
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
+from haiwei import models
 from haiwei.models import food
-
-
 # todo :design main UI
+from haiwei.settings import BASE_DIR
 
 
 def index(request):
@@ -97,26 +98,43 @@ def taste_data(request):
     return HttpResponse(json.dumps(data, ensure_ascii=False))
 
 
+def random_data(request):
+    # 随机函数
+    foods = food.objects.filter(id=-1)
+    while not foods.exists():
+        random_id = random.randint(0, 99)
+        foods = food.objects.filter(id=random_id)
+    res = serializers.serialize('json', foods)
+    t = json.loads(res)
+    data = {'status': 'success', 'code': '200', 'items': t}
+    return HttpResponse(json.dumps(data, ensure_ascii=False))
+
+
 # 上传
 def upload(request):
-    f = request.POST['fname']
-    w = request.POST['wname']
-    l = request.POST['location']
-    p = request.POST['price']
-    t = request.POST['taste']
-    i_1 = request.POST['img']
-    # i_2 = request.POST['imgid_2']
-    o = request.POST['others']
-    food.objects.create(
-        imgid_1=i_1,
-        # imgid_2=i_2,
-        location=l,
-        wname=w,
-        fname=f,
-        price=p,
-        taste=t,
-        others=o
-    )
+    if request.method == 'POST':
+        food = models.food(
+            fname=request.POST['fname'],
+            wname=request.POST['wname'],
+            location=request.POST['location'],
+            price=request.POST['price'],
+            taste=request.POST['taste'],
+            # imgid_1=request.POST['img'],
+            # i_2 = request.POST['imgid_2']
+            others=request.POST['others'],
+            imgid_1=request.FILES.get('img')
+        )
+        food.save()
+    # food.objects.create(
+    #     imgid_1=i_1,
+    #     # imgid_2=i_2,
+    #     location=l,
+    #     wname=w,
+    #     fname=f,
+    #     price=p,
+    #     taste=t,
+    #     others=o
+    # )
     return render(request, 'uploads.html')
 
 
