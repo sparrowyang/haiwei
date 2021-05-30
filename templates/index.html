@@ -125,9 +125,9 @@
 
             $(".div_item").remove();
             $.each(items, function (i, field) {
-                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/"><img ';
-                //var img = 'src="/static/uploads/'+field['fields']['imgid'] +'.jpg"/></a>';
-                var img = 'src="/static/uploads/mlj.jpg"/></a>';
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+field['fields']['imgid_1']+'&name='+field['fields']['fname']+'"><img ';
+                var img = 'src="/static/uploads/'+field['fields']['imgid_1'] +'"/></a>';
+                //var img = 'src="/static/uploads/mlj.jpg"/></a>';
                 var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
                 var title = '<div class="mdui-grid-tile-title">' + field['fields']['fname'] + '</div>';
                 var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>' + field['fields']['taste'] + '</div>';
