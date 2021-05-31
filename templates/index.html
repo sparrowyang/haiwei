@@ -58,7 +58,7 @@
     <div class="mdui-dialog-content">想吃什么？</div>
     <div class="mdui-dialog-actions">
         <div class="mdui-textfield">
-            <input class="mdui-textfield-input" type="text" placeholder="老八密制小汉堡"/>
+            <input id="s_keywords" class="mdui-textfield-input" type="text" placeholder="老八密制小汉堡"/>
         </div>
         <button class="mdui-btn mdui-ripple" onclick="show_search_dlg()">取消</button>
         <button class="mdui-btn mdui-ripple" onclick="search_foods()">搜索</button>
@@ -71,23 +71,62 @@
 <div id="dialog_filter" class="mdui-dialog mdui-color-{{theme}}-50">
     <div class="mdui-dialog-content">过滤</div>
     <div class="mdui-dialog-actions">
-        <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣1</label>
-        <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣2</label>
-        <label class="mdui-checkbox"><input type="checkbox" checked/><i class="mdui-checkbox-icon"></i>辣3</label>
+        <label class="mdui-checkbox"><input type="checkbox" name="taste" value="清淡" checked/><i class="mdui-checkbox-icon"></i>清淡</label>
+        <label class="mdui-checkbox"><input type="checkbox" name="taste" value="适中" checked/><i class="mdui-checkbox-icon"></i>适中</label>
+        <label class="mdui-checkbox"><input type="checkbox" name="taste" value="辣" checked/><i class="mdui-checkbox-icon"></i>辣  </label>
 
         <br>
         <button class="mdui-btn mdui-ripple" onclick="show_filter_dlg()">取消</button>
-        <button class="mdui-btn mdui-ripple" onclick="filter_foods()">搜索</button>
+        <button class="mdui-btn mdui-ripple" onclick="filter_foods()">过滤</button>
     </div>
 
 </div>
 {#END FILTER DAILOG #}
 
+<!-- #LOCATION DAILOG -->
+<div id="dialog_location" class="mdui-dialog mdui-color-{{theme}}-50">
+    <div class="mdui-dialog-content">过滤</div>
+    <div class="mdui-dialog-actions">
+        <label class="mdui-radio">
+            <input type="radio" value="清真" name="location"/>
+            <i class="mdui-radio-icon"></i>
+            清真
+        </label>
+        <label class="mdui-radio">
+            <input type="radio" value="第1食堂" name="location"/>
+            <i class="mdui-radio-icon"></i>
+            第一食堂
+        </label><br>
+        <label class="mdui-radio">
+            <input type="radio" value="第2食堂" name="location"/>
+            <i class="mdui-radio-icon"></i>
+            第二食堂
+        </label>
+        <label class="mdui-radio">
+            <input type="radio" value="第3食堂" name="location"/>
+            <i class="mdui-radio-icon"></i>
+            第三食堂
+        </label><br>
+        <label class="mdui-radio">
+            <input type="radio" value="第4食堂" name="location"/>
+            <i class="mdui-radio-icon"></i>
+            第四食堂
+        </label><br>
+        <button class="mdui-btn mdui-ripple" onclick="show_location_dlg()">取消</button>
+        <button class="mdui-btn mdui-ripple" onclick="locate()">过滤</button>
+    </div>
+
+</div>
+
+
+
+<!-- END #LOCATION DAILOG -->
+
 
 <!-- END显示界面 -->
 
 <!-- 中间按钮 -->
-<button id="random_bt" class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-color-{{theme}}-900" onclick="load_all()"><i
+<button id="random_bt" class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-color-{{theme}}-900" onclick="random_get()"><i
         class="mdui-icon material-icons">refresh</i></button>
 <!-- END中间按钮 -->
 
@@ -101,11 +140,11 @@
         <i class="mdui-icon mdui-fab-opened material-icons">expand_less</i>
     </button>
     <div class="mdui-fab-dial">
-        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink" onclick="load_all()"><i
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink" onclick="upload()"><i
                 class="mdui-icon material-icons">backup</i></button>
         <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red" onclick="show_search_dlg()"><i
                 class="mdui-icon material-icons">search</i></button>
-        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="locate()"><i
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="show_location_dlg()"><i
                 class="mdui-icon material-icons">room</i></button>
         <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue" onclick="show_filter_dlg()"><i
                 class="mdui-icon material-icons">filter_list</i></button>
@@ -119,13 +158,13 @@
 
 
 <script type="text/javascript">
-    function load_all() {
-        $.getJSON("all", function (data) {
+    function random_get() {
+        $.getJSON("search/random/", function (data) {
             var items = data['items'];
-
             $(".div_item").remove();
             $.each(items, function (i, field) {
-                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+field['fields']['imgid_1']+'&name='+field['fields']['fname']+'"><img ';
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+
+                    field['fields']['imgid_1']+'&name='+field['fields']['fname']+'&p='+field['fields']['price']+'"><img ';
                 var img = 'src="/media/'+field['fields']['imgid_1'] +'"/></a>';
                 //var img = 'src="/static/uploads/mlj.jpg"/></a>';
                 var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
@@ -140,7 +179,7 @@
 
     var search_dlg_ints = new mdui.Dialog('#dialog_search');
     var filter_dlg_ints = new mdui.Dialog('#dialog_filter');
-
+    var dialog_dlg_ints = new mdui.Dialog('#dialog_location');
     function toggle_dlg(a) {
         a.toggle();
     }
@@ -153,17 +192,24 @@
         toggle_dlg(filter_dlg_ints);
     }
 
+    function show_location_dlg(){
+        toggle_dlg(dialog_dlg_ints);
+    }
     function search_foods() {
-        $.getJSON("api/v1/search", function (data) {
+        //fname
+        var keywords = $("#s_keywords").val();
+        $.getJSON("search/fname?fname="+keywords, function (data) {
             var items = data['items'];
+
             $(".div_item").remove();
-            //show html result.
             $.each(items, function (i, field) {
-                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/"><img ';
-                var img = 'src="/static/uploads/' + field['imgid'] + '.jpg"/></a>';
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+
+                    field['fields']['imgid_1']+'&name='+field['fields']['fname']+'&p='+field['fields']['price']+'"><img ';
+                var img = 'src="/media/'+field['fields']['imgid_1'] +'"/></a>';
+                //var img = 'src="/static/uploads/mlj.jpg"/></a>';
                 var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
-                var title = '<div class="mdui-grid-tile-title">' + field['fname'] + '</div>';
-                var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>' + field['taste'] + '</div>';
+                var title = '<div class="mdui-grid-tile-title">' + field['fields']['fname'] + '</div>';
+                var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>' + field['fields']['taste'] + '</div>';
                 var close = '</div></div></div>';
                 var app = docs + img + content + title + statement + close;
                 $(".food_item").append(app);
@@ -172,22 +218,75 @@
     }
 
     function filter_foods() {
+        var filter_key = "";
+        $.each($('input:checkbox[name="taste"]:checked'),function(){
+                console.log("你选了："+$('input[type=checkbox]:checked').length+"个，其中有："+$(this).val());
+                filter_key += "*" + $(this).val();
+        });
+        
+        console.log(filter_key);
+
+        $('input:checkbox').each(function() { 
+          if ($(this).attr('checked') ==true) { 
+            console.log($(this).val()); 
+          } 
+        });
+
+        var keywords = $("#s_keywords").val();
+        $.getJSON("search/taste?taste="+keywords, function (data) {
+            var items = data['items'];
+
+            $(".div_item").remove();
+            $.each(items, function (i, field) {
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+
+                    field['fields']['imgid_1']+'&name='+field['fields']['fname']+'&p='+field['fields']['price']+'"><img ';
+                var img = 'src="/media/'+field['fields']['imgid_1'] +'"/></a>';
+                //var img = 'src="/static/uploads/mlj.jpg"/></a>';
+                var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
+                var title = '<div class="mdui-grid-tile-title">' + field['fields']['fname'] + '</div>';
+                var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>' + field['fields']['taste'] + '</div>';
+                var close = '</div></div></div>';
+                var app = docs + img + content + title + statement + close;
+                $(".food_item").append(app);
+            });
+        });
         console.log("fiter foods request.")
     }
 
     function locate() {
+        //search/location/
+        var keywords = $('input:radio[name="location"]:checked').val();
+        $.getJSON("search/location/?location="+keywords, function (data) {
+            var items = data['items'];
+
+            $(".div_item").remove();
+            $.each(items, function (i, field) {
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+
+                    field['fields']['imgid_1']+'&name='+field['fields']['fname']+'&p='+field['fields']['price']+'"><img ';
+                var img = 'src="/media/'+field['fields']['imgid_1'] +'"/></a>';
+                //var img = 'src="/static/uploads/mlj.jpg"/></a>';
+                var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
+                var title = '<div class="mdui-grid-tile-title">' + field['fields']['fname'] + '</div>';
+                var statement = '<div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">grid_on</i>' + field['fields']['taste'] + '</div>';
+                var close = '</div></div></div>';
+                var app = docs + img + content + title + statement + close;
+                $(".food_item").append(app);
+            });
+        });
         console.log("locate request.")
     }
 
+    function upload(){
+        window.location.href="uploads/";
+    }
 
+    // refresh.setOnRefreshListener(function () {
 
-    refresh.setOnRefreshListener(function () {
+    //     //被刷新的时候
 
-        //被刷新的时候
+    //     load_all();
 
-        load_all();
-
-    });
+    // });
 
 </script>
 </body>

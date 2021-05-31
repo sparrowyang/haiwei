@@ -29,7 +29,8 @@
         <option value="teal">菠菜青</option>
         <option value="blue">知乎蓝</option>
         <option value="blue-grey">深空灰</option>
-    </select>
+    </select><br>
+    <button class="mdui-btn mdui-btn-raised" onclick="save()">保存</button><button class="mdui-btn mdui-btn-raised" onclick="back()">返回</button>
 </div>
 
 </body>
@@ -42,25 +43,26 @@
     function back(){
         window.history.back(-1);
     }
-$("#se_lr").change(function() {
-    //获取当前select选择的值
-    var v_theme = $("#se_theme").val();
-    var v_lr = $("#se_lr").val();
-    console.log(v_lr);
-    $.ajax({
-        url:"save/",
-        type:'get',
-        data:{
-            "theme":v_theme,
-            "customlr":v_lr
-        },
-        success:function(result){
-            console.log(result);
-        }
-    });
+// $("#se_lr").change(function() {
+//     //获取当前select选择的值
+//     var v_theme = $("#se_theme").val();
+//     var v_lr = $("#se_lr").val();
+//     console.log(v_lr);
+//     $.ajax({
+//         url:"save/",
+//         type:'get',
+//         data:{
+//             "theme":v_theme,
+//             "customlr":v_lr
+//         },
+//         success:function(result){
+//             console.log(result);
+//         }
+//     });
 
-});
-$("#se_theme").change(function() {
+// });
+// $("#se_theme").change(function() {
+function save(){
     //获取当前select选择的值
     var v_theme = $("#se_theme").val();
     var v_lr = $("#se_lr").val();
@@ -80,8 +82,12 @@ $("#se_theme").change(function() {
         }
     });
 
-});
+}
 
+
+    function back(){
+        window.history.back(-1);
+    }
 
 
 

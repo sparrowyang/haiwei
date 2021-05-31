@@ -14,17 +14,21 @@
     <title>{{ title }}</title>
 </head>
 <body>
+  <div id="d_login">
     <form action="login/" method="post">
-        {% csrf_token %}
-        <div class="mdui-textfield">
-          <input class="mdui-textfield-input" type="text" placeholder="名称" name="username"/>
-        </div>
+      {% csrf_token %}
+      <div class="mdui-textfield">
+        <input class="mdui-textfield-input" type="text" placeholder="名称" name="username"/>
+      </div>
 
-        <div class="mdui-textfield">
-          <input class="mdui-textfield-input" type="text" placeholder="口令" name="password"/>
-        </div>
-        <input type="submit">
-    </form>
+      <div class="mdui-textfield">
+        <input class="mdui-textfield-input" type="text" placeholder="口令" name="password"/>
+      </div>
+      <input type="submit">
+  </form>
+
+  </div>
+
 
 
 </body>
