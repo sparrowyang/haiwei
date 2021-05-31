@@ -15,7 +15,7 @@
   </head>
 	<body id="b_upload" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-amber-50" >
     <h2>上传管理</h2>
-    <form action="new/" method="post">
+    <form action="new/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mdui-textfield">
           <input class="mdui-textfield-input" type="text" placeholder="名称" name="fname"/>

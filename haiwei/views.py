@@ -3,50 +3,49 @@ import random
 
 from django.core import serializers
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 from haiwei import models
 from haiwei.models import food
+
+
 # todo :design main UI
-from haiwei.settings import BASE_DIR
 
 
 def index(request):
     # 渲染内容
     theme = request.session.get('theme', None)
-    customlr = request.session.get('customlr',None)
+    customlr = request.session.get('customlr', None)
     context = {
         'title': '海味',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
-        'customlr':customlr,
+        'customlr': customlr,
         'theme': theme,
         'xxx': 'xxxxx'
     }
     return render(request, 'index.html', context)
 
+
 def setting(request):
-    customlr = request.session.get('customlr',None)
-    theme = request.session.get('theme',None)
+    customlr = request.session.get('customlr', None)
+    theme = request.session.get('theme', None)
     context = {
         'title': '海味',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
-        'customlr':customlr,
-        'theme':theme,
-        'checked':'',
+        'customlr': customlr,
+        'theme': theme,
+        'checked': '',
         'xxx': 'xxxxx'
     }
     return render(request, 'setting.html', context)
+
 
 def save_settting(request):
     lr = request.GET['customlr']
     theme = request.GET['theme']
     request.session['customlr'] = lr
-
-
     request.session['theme'] = theme
     data = {'status': 'success', 'code': '200'}
     return HttpResponse(json.dumps(data, ensure_ascii=False))
-
-
 
 
 def all_data(request):
@@ -90,20 +89,25 @@ def location_data(request):
 
 
 def taste_data(request):
-    foods = food.objects.filter(taste=request.GET['taste'])
+    tastes = request.GET['taste']
+    print(tastes)
+    tastes = tastes.split("*")
+    print(tastes)
+    foods = food.objects.filter(taste__in=tastes)
     res = serializers.serialize('json', foods)
     t = json.loads(res)
     data = {'status': 'success', 'code': '200', 'items': t}
-    # print(request.GET['location'])
     return HttpResponse(json.dumps(data, ensure_ascii=False))
 
 
 def random_data(request):
     # 随机函数
     foods = food.objects.filter(id=-1)
+    id_s = []
+    for i in range(0, 10):
+        id_s.append(random.randint(0, 100))
     while not foods.exists():
-        random_id = random.randint(0, 99)
-        foods = food.objects.filter(id=random_id)
+        foods = food.objects.filter(id__in=id_s)
     res = serializers.serialize('json', foods)
     t = json.loads(res)
     data = {'status': 'success', 'code': '200', 'items': t}
@@ -113,49 +117,33 @@ def random_data(request):
 # 上传
 def upload(request):
     if request.method == 'POST':
-        food = models.food(
+        foods = models.food(
             fname=request.POST['fname'],
             wname=request.POST['wname'],
             location=request.POST['location'],
             price=request.POST['price'],
             taste=request.POST['taste'],
-            # imgid_1=request.POST['img'],
-            # i_2 = request.POST['imgid_2']
             others=request.POST['others'],
             imgid_1=request.FILES.get('img')
         )
-        food.save()
-    # food.objects.create(
-    #     imgid_1=i_1,
-    #     # imgid_2=i_2,
-    #     location=l,
-    #     wname=w,
-    #     fname=f,
-    #     price=p,
-    #     taste=t,
-    #     others=o
-    # )
+        foods.save()
     return render(request, 'uploads.html')
 
 
 def r_upload(request):
-    user = request.session.get('user',None)
+    user = request.session.get('user', None)
     context = {
-
         'title': '海味管理',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
         'xxx': 'xxxxx'
     }
     if user != 'admin':
         return render(request, 'login.html', context)
-
     return render(request, 'uploads.html', context)
 
 
 def r_login(request):
     uname = request.POST['username']
     pwd = request.POST['password']
-
     if uname == 'admin' and pwd == 'admin':
         request.session['user'] = 'admin'
-
     return HttpResponseRedirect('/uploads/')
