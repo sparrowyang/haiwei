@@ -106,8 +106,10 @@ def random_data(request):
     id_s = []
     for i in range(0, 10):
         id_s.append(random.randint(0, 100))
+    print("test",1)
     while not foods.exists():
         foods = food.objects.filter(id__in=id_s)
+    print("test",2)
     res = serializers.serialize('json', foods)
     t = json.loads(res)
     data = {'status': 'success', 'code': '200', 'items': t}

@@ -45,10 +45,10 @@ p{
 }
 
 #random_bt{
-	transform: scale(1.25, 1.25);
+	transform: scale(2, 2);
     /*background-color: red;*/
     position: fixed;
-    bottom: 10%;
+    bottom: 20%;
     left: 45%;
 
 }

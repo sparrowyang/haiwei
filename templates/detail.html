@@ -14,12 +14,12 @@
 	<link rel="stylesheet"  href="{% static "/css/animate.min.css" %}" />
     <title>{{ name }}</title>
 </head>
-<body class="mdui-color-{{theme}}-200">
+<body class="mdui-color-{{theme}}-200" onload="load_data()">
 <div class="div_detail mdui-card mdui-color-theme mdui-color-{{theme}}-200">
 
   <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
   <div class="mdui-card-media">
-    <img src="/media/{{ picture }}"/>
+    <img id="fimg" src="/media/{{ picture }}"/>
 
     <!-- 卡片中可以包含一个或多个菜单按钮 -->
     <div class="mdui-card-menu ">
@@ -29,12 +29,12 @@
 
   <!-- 卡片的标题和副标题 -->
   <div class="mdui-card-primary">
-    <div class="mdui-card-primary-title">{{ name }}</div>
-    <div class="mdui-card-primary-subtitle">{{price}}元</div>
+    <div id ="fname" class="mdui-card-primary-title">{{ name }}</div>
+    <div id ="fprice" class="mdui-card-primary-subtitle">{{price}}元</div>
   </div>
 
   <!-- 卡片的内容 -->
-  <div class="mdui-card-content">{{ dec }}</div>
+  <div id = "fdes" class="mdui-card-content">{{ dec }}</div>
 
   <!-- 卡片的按钮 -->
   <div class="mdui-card-actions">
@@ -46,9 +46,33 @@
 </div>
 </body>
 
+
+<script src="{% static "js/mdui.min.js" %}"></script>
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/custom.js" %}"></script>
+
 <script type="text/javascript">
     function back(){
         window.history.back(-1);
+    }
+
+
+    function load_data(){
+      $.getJSON("/search/id/?id={{id}}", function (data) {
+          var items = data['items'];
+          $(".div_item").remove();
+
+          var img   =  data['items'][0]['fields']['imgid_1'];
+          var fname =  data['items'][0]['fields']['fname'];
+          var des   =  data['items'][0]['fields']['others'];
+          var price =  data['items'][0]['fields']['price'];
+          $('title').text(fname);
+          $('#fimg').attr("src","/media/"+img);
+          $('#fname').text(fname);
+          $('#fprice').text(price);
+          $('#fdes').text(des);
+          console.log("locate request.");
+      });
     }
 </script>
 </html>

@@ -163,8 +163,8 @@
             var items = data['items'];
             $(".div_item").remove();
             $.each(items, function (i, field) {
-                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+
-                    field['fields']['imgid_1']+'&name='+field['fields']['fname']+'&p='+field['fields']['price']+'"><img ';
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?id='+
+                    field['pk']+'"><img ';
                 var img = 'src="/media/'+field['fields']['imgid_1'] +'"/></a>';
                 //var img = 'src="/static/uploads/mlj.jpg"/></a>';
                 var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
@@ -203,8 +203,8 @@
 
             $(".div_item").remove();
             $.each(items, function (i, field) {
-                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+
-                    field['fields']['imgid_1']+'&name='+field['fields']['fname']+'&p='+field['fields']['price']+'"><img ';
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?id='+
+                    field['pk']+'"><img ';
                 var img = 'src="/media/'+field['fields']['imgid_1'] +'"/></a>';
                 //var img = 'src="/static/uploads/mlj.jpg"/></a>';
                 var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
@@ -213,8 +213,11 @@
                 var close = '</div></div></div>';
                 var app = docs + img + content + title + statement + close;
                 $(".food_item").append(app);
+
+                
             });
         });
+        toggle_dlg(search_dlg_ints);
     }
 
     function filter_foods() {
@@ -233,13 +236,13 @@
         });
 
         var keywords = $("#s_keywords").val();
-        $.getJSON("search/taste?taste="+keywords, function (data) {
+        $.getJSON("search/taste?taste="+filter_key, function (data) {
             var items = data['items'];
 
             $(".div_item").remove();
             $.each(items, function (i, field) {
-                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+
-                    field['fields']['imgid_1']+'&name='+field['fields']['fname']+'&p='+field['fields']['price']+'"><img ';
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?id='+
+                    field['pk']+'"><img ';
                 var img = 'src="/media/'+field['fields']['imgid_1'] +'"/></a>';
                 //var img = 'src="/static/uploads/mlj.jpg"/></a>';
                 var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
@@ -261,8 +264,8 @@
 
             $(".div_item").remove();
             $.each(items, function (i, field) {
-                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?pic='+
-                    field['fields']['imgid_1']+'&name='+field['fields']['fname']+'&p='+field['fields']['price']+'"><img ';
+                var docs = '<div class="div_item animate__animated animate__bounceInLeft mdui-grid-tile"><a href="detail/?id='+
+                    field['pk']+'"><img ';
                 var img = 'src="/media/'+field['fields']['imgid_1'] +'"/></a>';
                 //var img = 'src="/static/uploads/mlj.jpg"/></a>';
                 var content = '<div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text">';
