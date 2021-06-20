@@ -17,6 +17,10 @@ def index(request):
     # 渲染内容
     theme = request.session.get('theme', None)
     customlr = request.session.get('customlr', None)
+
+    if customlr == None:
+        request.session['theme'] = 'amber'
+
     context = {
         'title': '海味',  # 这会将模板中{{title}} 字段渲染为冒号右边的字符串
         'customlr': customlr,
@@ -149,3 +153,8 @@ def r_login(request):
     if uname == 'admin' and pwd == 'admin':
         request.session['user'] = 'admin'
     return HttpResponseRedirect('/uploads/')
+
+def r_logout(request):
+    request.session['user'] = None
+    data = {'status': 'success', 'code': '200', 'msg': 'logout successful!'}
+    return HttpResponse(json.dumps(data, ensure_ascii=False))

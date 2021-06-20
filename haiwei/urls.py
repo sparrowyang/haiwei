@@ -30,6 +30,7 @@ urlpatterns = [
                   path('uploads/', views.r_upload),
                   path('uploads/new/', views.upload),
                   path('uploads/login/', views.r_login),
+                  path('uploads/logout/', views.r_logout),
                   path('all/', views.all_data),
                   path('setting/', views.setting),
                   path('setting/save/', views.save_settting),

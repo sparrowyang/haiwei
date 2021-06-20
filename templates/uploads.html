@@ -15,6 +15,7 @@
   </head>
 	<body id="b_upload" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-amber-50" >
     <h2>上传管理</h2>
+    <a>你好，管理员</a><a style="float: right;" href="#" onclick="logout()">注销</a>
     <form action="new/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mdui-textfield">
@@ -74,10 +75,26 @@
           <textarea class="mdui-textfield-input" rows="4" name="others"></textarea>
         </div>
         <input type="file" name="img" multiple="multiple"/>
-        <input type="submit"/>
+
+        <input style="float: right;" class="mdui-btn mdui-btn-raised mdui-color-theme-accent" type="submit"/>
     </form>
 
 
+    <script src="{% static "js/mdui.min.js" %}"></script>
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/custom.js" %}"></script>
 
+    <script>
+      function logout(){
+        $.getJSON("logout/", function (data) {
+            console.log("locate request.");
+        });
+        setTimeout(function(){
+          location.reload();
+        },1000);
+        
+      }
+    </script>
   </body>
+
 </html>

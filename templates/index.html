@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{% static "/css/mdui.min.css" %}"/>
     <link rel="stylesheet" href="{% static "/css/custom.css" %}"/>
     <link rel="stylesheet" href="{% static "/css/animate.min.css" %}"/>
+
+    <link rel="manifest" href="{% static "/manifest.json"  %}">   
     <title>{{ title }}</title>
 </head>
 <body id="b_main" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-{{theme}}-50" >
@@ -50,9 +52,11 @@
 
 
 <!-- 显示界面 -->
-<div class="food_item">
-    <!-- 内容由js 加载出来-->
-</div>
+    <div class="food_item">
+           <!-- 内容由js 加载出来-->
+    </div>
+
+
 {# SEARCH DAILOG  #}
 <div id="dialog_search" class="mdui-dialog mdui-color-{{theme}}-50">
     <div class="mdui-dialog-content">想吃什么？</div>
@@ -254,6 +258,7 @@
             });
         });
         console.log("fiter foods request.")
+        toggle_dlg(filter_dlg_ints);
     }
 
     function locate() {
@@ -277,6 +282,7 @@
             });
         });
         console.log("locate request.")
+        toggle_dlg(dialog_dlg_ints);
     }
 
     function upload(){
@@ -290,6 +296,10 @@
     //     load_all();
 
     // });
+
+     //------------------------下拉刷新-------------------------------
+
+
 
 </script>
 </body>
