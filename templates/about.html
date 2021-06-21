@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet"  href="{% static "/css/mdui.min.css" %}" />
+    <link rel="stylesheet"  href="{% static "/css/custom.css" %}" />
+	<link rel="stylesheet"  href="{% static "/css/animate.min.css" %}" />
+    <title>{{ name }}</title>
+</head>
+<body class="mdui-color-{{theme}}-200" onload="load_data()" style="text-align: center;">
+
+    <div class="mdui-grid-tile mdui-color-theme mdui-color-{{theme}}-200">
+        <a href="javascript:;"><img src ="/static/food.png"/></a>
+        <h3>海味第一小组</h3>
+        <div class="mdui-chip">
+            <span class="mdui-chip-icon">S</span>
+            <span class="mdui-chip-title">sparrowyang</span>
+          </div>
+          <div class="mdui-chip">
+            <span class="mdui-chip-icon">S</span>
+            <span class="mdui-chip-title">$sudo rm -rf/*</span>
+          </div>
+          <div class="mdui-chip">
+            <span class="mdui-chip-icon">x</span>
+            <span class="mdui-chip-title">xinkule</span>
+          </div>
+          <div class="mdui-chip">
+            <span class="mdui-chip-icon">j</span>
+            <span class="mdui-chip-title">joyi</span>
+          </div>
+      </div>
+
+</body>
+
+<script src="{% static "js/mdui.min.js" %}"></script>
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/custom.js" %}"></script>
+
+<script type="text/javascript">
+    function back(){
+        window.history.go(-1);
+    }
+
+</script>
+</html>

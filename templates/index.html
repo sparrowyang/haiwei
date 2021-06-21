@@ -15,7 +15,7 @@
     <link rel="manifest" href="{% static "/manifest.json"  %}">   
     <title>{{ title }}</title>
 </head>
-<body id="b_main" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-{{theme}}-50" >
+<body id="b_main" class=" mdui-drawer-body-left mdui-drawer-body-right mdui-color-{{theme}}-50" onload="random_get()" >
 
 <div class=" mdui-toolbar mdui-color-theme mdui-color-{{theme}}">
 {#    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>#}
@@ -34,7 +34,7 @@
             </a>
         </li>
         <li class="mdui-menu-item">
-            <a href="javascript:;" class="mdui-ripple">
+            <a href="about/" class="mdui-ripple">
                 <i class="mdui-menu-item-icon mdui-icon material-icons">more_horiz</i>关于我们
             </a>
         </li>
@@ -130,7 +130,7 @@
 <!-- END显示界面 -->
 
 <!-- 中间按钮 -->
-<button id="random_bt" class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-color-{{theme}}-900" onclick="random_get()"><i
+<button id="random_bt" class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-color-{{theme}}-900 " onclick="random_get()"><i
         class="mdui-icon material-icons">refresh</i></button>
 <!-- END中间按钮 -->
 

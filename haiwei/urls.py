@@ -34,6 +34,7 @@ urlpatterns = [
                   path('all/', views.all_data),
                   path('setting/', views.setting),
                   path('setting/save/', views.save_settting),
+                  path('about/', views.about),
 
                   path('search/location/', views.location_data),
                   path('search/taste/', views.taste_data),
